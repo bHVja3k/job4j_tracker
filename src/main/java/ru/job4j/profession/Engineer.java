@@ -30,7 +30,6 @@ public class Engineer extends Profession {
         this.project = project;
     }
 
-
     public Engineer(String project, String designing, String construction) {
         this.project = project;
         this.designing = designing;
