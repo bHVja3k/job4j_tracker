@@ -22,4 +22,13 @@ public class TrackerTest {
         Item result = tracker.findByName(item.getName());
         assertThat(result.getName(), is(item.getName()));
     }
+
+    @Test
+    public void whenFindAll() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("test1");
+        tracker.add(item);
+        Item result = tracker.findAll(item.getName());
+        assertThat(result.getName(), is(item.getName()));
+    }
 }

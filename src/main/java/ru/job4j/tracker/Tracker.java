@@ -11,6 +11,7 @@ public class Tracker {
      * @param item заявка
      * @return возвращает добавленную заявку
      */
+
     public Item add(Item item) {
         item.setId(generateId());
         items[size++] = item;
@@ -41,6 +42,14 @@ public class Tracker {
                 rsl = item;
                 break;
             }
+        }
+        return rsl;
+    }
+
+    public Item findAll(String id) {
+        Item rsl = null;
+        for (int index = 0; index < size; index++) {
+            rsl = items[index];
         }
         return rsl;
     }
