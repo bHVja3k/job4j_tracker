@@ -60,6 +60,7 @@ public class Tracker {
 
     /**
      * Метод замены заявки в хранилище (id заявки сохраняется)
+     *
      * @param id заявки, которую нужно заменить
      * @param item новая заявка
      */
@@ -68,5 +69,19 @@ public class Tracker {
         item.setId(id);
         this.items[index] = item;
         return true;
+    }
+
+    /**
+     * Метод удаления заявки из хранилища
+     *
+     * @param id заявки, которую нужно удалить
+     */
+    public void delete(String id) {
+        int index = indexOf(id);
+        if(index != -1) {
+            System.arraycopy(items, index + 1, items, index, items.length - index - 1);
+            items[size - 1] = null;
+            size--;
+        }
     }
 }
