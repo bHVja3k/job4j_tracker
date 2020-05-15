@@ -61,14 +61,17 @@ public class Tracker {
     /**
      * Метод замены заявки в хранилище (id заявки сохраняется)
      *
-     * @param id заявки, которую нужно заменить
+     * @param id   заявки, которую нужно заменить
      * @param item новая заявка
      */
+    @Override
     public boolean replace(String id, Item item) {
         int index = indexOf(id);
-        item.setId(id);
-        this.items[index] = item;
-        return true;
+        boolean rsl = index != -1;
+        if (rsl) {
+            items[index] = item;
+        }
+        return rsl;
     }
 
     /**
@@ -78,7 +81,7 @@ public class Tracker {
      */
     public void delete(String id) {
         int index = indexOf(id);
-        if(index != -1) {
+        if (index != -1) {
             System.arraycopy(items, index + 1, items, index, items.length - index - 1);
             items[size - 1] = null;
             size--;
