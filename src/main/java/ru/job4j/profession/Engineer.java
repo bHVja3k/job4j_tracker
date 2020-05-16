@@ -2,9 +2,9 @@ package ru.job4j.profession;
 
 public class Engineer extends Profession {
 
-    String project;
-    String designing;
-    String construction;
+    private String project;
+    private String designing;
+    private String construction;
 
     public String getDesigning() {
         return designing;

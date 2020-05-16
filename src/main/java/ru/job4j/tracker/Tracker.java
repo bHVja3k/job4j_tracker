@@ -64,6 +64,7 @@ public class Tracker {
      * @param id   заявки, которую нужно заменить
      * @param item новая заявка
      */
+
     @Override
     public boolean replace(String id, Item item) {
         int index = indexOf(id);
@@ -79,12 +80,15 @@ public class Tracker {
      *
      * @param id заявки, которую нужно удалить
      */
-    public void delete(String id) {
+    public boolean delete(String id) {
+        boolean rsl = false;
         int index = indexOf(id);
         if (index != -1) {
             System.arraycopy(items, index + 1, items, index, items.length - index - 1);
             items[size - 1] = null;
             size--;
+            rsl = true;
         }
+        return rsl;
     }
 }

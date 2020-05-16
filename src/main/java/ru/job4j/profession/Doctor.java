@@ -2,9 +2,9 @@ package ru.job4j.profession;
 
 public class Doctor extends Profession {
 
-    String diagnose;
-    String analysis;
-    String inspection;
+    private String diagnose;
+    private String analysis;
+    private String inspection;
 
     public String getAnalysis() {
         return analysis;
