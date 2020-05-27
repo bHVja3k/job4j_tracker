@@ -32,8 +32,6 @@ public class Shop {
             if (products[i] != null) {
                 products[i - 1] = products[i];
                 products[i] = null;
-            } else {
-                products[i] = null;
             }
         }
         return products;
