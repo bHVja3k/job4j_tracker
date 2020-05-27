@@ -79,6 +79,7 @@ public class Tracker {
      *
      * @param id заявки, которую нужно удалить
      */
+
     public boolean delete(String id) {
         boolean rsl = false;
         int index = indexOf(id);
