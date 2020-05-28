@@ -2,7 +2,7 @@ package ru.job4j.tracker;
 
 import java.util.Objects;
 
-public class Item {
+public class Item extends Tracker {
     private String id;
     private String name;
 
