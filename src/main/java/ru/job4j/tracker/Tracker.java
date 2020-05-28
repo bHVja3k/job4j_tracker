@@ -22,6 +22,7 @@ public class Tracker {
         return String.valueOf(ids++);
     }
 
+
     public Item findById(String id) {
         int index = indexOf(id);
         return index != -1 ? items[index] : null;
