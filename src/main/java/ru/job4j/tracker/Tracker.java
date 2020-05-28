@@ -27,24 +27,40 @@ public class Tracker {
         return index != -1 ? items[index] : null;
     }
 
-    public Item findByName(String name) {
-        Item rsl = null;
-        for (int index = 0; index < size; index++) {
-            Item item = items[index];
-            if (item.getName().equals(name)) {
-                rsl = item;
+    /**
+     * Метод поиска заявки по имени
+     *
+     * @param name имя заявки, которую нужно найти
+     * @return список заявок
+     */
+
+    public Item[] findByName(String name) {
+        Item[] result = new Item[items.length];
+        int indexResult = 0;
+        for (int i = 0; i < size; i++) {
+            if (items[i] != null && items[i].getName().equals(name)) {
+                result[indexResult] = this.items[i];
                 break;
             }
         }
-        return rsl;
+        return result;
     }
 
-    public Item findAll(String id) {
-        Item rsl = null;
+    /**
+     * Метод поиска всез заявок в хранилище
+     *
+     * @param id заявок, которые нужно вывести
+     * @return список заявок
+     */
+
+    public Item[] findAll(String id) {
+        Item[] result = new Item[items.length];
         for (int index = 0; index < size; index++) {
-            rsl = items[index];
+            if (items[index] != null && items[index].getId().equals(id)) {
+                result[index] = this.items[index];
+            }
         }
-        return rsl;
+        return result;
     }
 
     private int indexOf(String id) {
