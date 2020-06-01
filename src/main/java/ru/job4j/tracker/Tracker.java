@@ -85,7 +85,9 @@ public class Tracker {
     public boolean replace(String id, Item item) {
         int index = indexOf(id);
         boolean rsl = index != -1;
+        // здесь мы сохраняем старый id заявки
         if (rsl) {
+            item.setId(id);
             items[index] = item;
         }
         return rsl;
@@ -101,7 +103,7 @@ public class Tracker {
         boolean rsl = false;
         int index = indexOf(id);
         if (index != -1) {
-            System.arraycopy(items, index + 1, items, index, items.length - index - 1);
+            System.arraycopy(items, index + 1, items, index, size - index - 1);
             items[size - 1] = null;
             size--;
             rsl = true;
