@@ -14,9 +14,9 @@ public class Shop {
             }
         }
         System.out.println();
-        System.out.println("Удаляем значение из ячейки с индексом 0 с помощью метода");
+        System.out.println("Удаляем значение из ячейки с индексом 3 с помощью метода");
         Shop delete = new Shop();
-        delete.delete(products, 0);
+        delete.delete(products, 3);
         for (Product product : products) {
             if (product != null) {
                 System.out.println(product.getName());
@@ -27,14 +27,8 @@ public class Shop {
     }
 
     public Product[] delete(Product[] products, int index) {
-        products[index] = null;
-        for (int i = index; i < products.length; i++) {
-            if (products[i] != null) {
-                products[i - 1] = products[i];
-                products[i] = null;
-            } else {
-                products[i] = null;
-            }
+        for (int i = index; i < products.length - 1; i++) {
+            products[i] = products[i + 1];
         }
         return products;
     }
