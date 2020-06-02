@@ -51,14 +51,13 @@ public class Tracker {
     /**
      * Метод поиска всез заявок в хранилище
      *
-     * @param id заявок, которые нужно вывести
      * @return список заявок
      */
 
-    public Item[] findAll(String id) {
+    public Item[] findAll() {
         Item[] result = new Item[items.length];
         for (int index = 0; index < size; index++) {
-            if (items[index] != null && items[index].getId().equals(id)) {
+            if (items[index] != null ) {
                 result[index] = this.items[index];
             }
         }
