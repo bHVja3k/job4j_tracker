@@ -13,42 +13,57 @@ public class StartUI {
             int select = Integer.valueOf(scanner.nextLine());
             if (select == 0) {
                 System.out.println();
-                System.out.println("\n=== Create a new Item ====");
+                System.out.println("=== Create a new Item ====");
                 System.out.print("Enter name: ");
                 String name = scanner.nextLine();
                 Item item = new Item(name);
                 tracker.add(item);
+                System.out.println(" ID заявки: " + item.getId() + System.lineSeparator() + "Имя заявки: " + item.getName());
             } else if (select == 1) {
-                System.out.println("\n=== Show all item ===");
+                System.out.println(System.lineSeparator() + "=== Show all item ===");
                 Item[] items = tracker.findAll();
                 for (Item item : items) {
-                    if (item != null) {
-                        System.out.println(" ID заявки: " + item.getId() + "Имя заявки: " + item.getName());
-                    }
+                    System.out.println(" ID заявки: " + item.getId() + System.lineSeparator() + "Имя заявки: " + item.getName());
                 }
             } else if (select == 2) {
-                System.out.println("\n=== Edit item ===\n");
+                System.out.println(System.lineSeparator() + "=== Edit item ===\n");
                 System.out.println("Введите ID завки для замены: ");
                 String id = scanner.nextLine();
                 System.out.println("Введите новое имя заявки: ");
                 String name = scanner.nextLine();
                 Item item = new Item(name);
-                tracker.replace(id, item);
+                if (tracker.replace(id, item)) {
+                    System.out.println("Заявка успешно заменена");
+                } else {
+                    System.out.println("Id указан неверно");
+                }
             } else if (select == 3) {
-                System.out.println("\n=== Delete item ===");
+                System.out.println(System.lineSeparator() + "=== Delete item ===");
                 String delete = scanner.nextLine();
-                tracker.delete(delete);
+                if (tracker.delete(delete)) {
+                    System.out.println("Заявка успешно заменена");
+                } else {
+                    System.out.println("Id указан неверно");
+                }
             } else if (select == 4) {
-                System.out.println("\n===  Find item by Id ===\n");
+                System.out.println(System.lineSeparator() + "===  Find item by Id ===\n");
                 String byid = scanner.nextLine();
                 Item item = tracker.findById(byid);
-                System.out.println(" ID заявки: " + item.getId() + " Имя заявки: " + item.getName());
+                if (tracker.findById(byid) != null) {
+                    System.out.println(" ID заявки: " + item.getId() + System.lineSeparator() + "Имя заявки: " + item.getName());
+                } else {
+                    System.out.println("Id указан неверно");
+                }
             } else if (select == 5) {
-                System.out.println("\n=== Find items by name ===\n");
+                System.out.println(System.lineSeparator() + "=== Find items by name ===");
                 String byname = scanner.nextLine();
                 Item[] item = tracker.findByName(byname);
-                for (Item value : item) {
-                    System.out.println(" ID заявки: " + value.getId() + " Имя заявки: " + value.getName());
+                if (tracker.findByName(byname) != null) {
+                    for (Item value : item) {
+                        System.out.println(" ID заявки: " + value.getId() + System.lineSeparator() + " Имя заявки: " + value.getName());
+                    }
+                } else {
+                    System.out.println("Имя указано неверно");
                 }
             } else if (select == 6) {
                 run = false;
@@ -57,7 +72,7 @@ public class StartUI {
     }
 
     private void showMenu() {
-        System.out.println("\nMenu.");
+        System.out.println(System.lineSeparator() + "Menu.");
         System.out.println("0. Add new Item");
         System.out.println("1. Show all items");
         System.out.println("2. Edit item");
