@@ -4,17 +4,47 @@ import java.util.Scanner;
 
 public class Matches {
     public static void main(String[] args) {
-        int match = 11;
-        System.out.println("Игра 11");
         Scanner input = new Scanner(System.in);
-        boolean run = true;
-        while (run) {
+        int matchesTotal = 11;
+        int answerCount = 0;
+        int matchesPlayerOne = 0;
+        int matchesPlayerTWo = 0;
+
+        while (matchesTotal > 0) {
+            if (matchesTotal <= 0) {
+                if (matchesPlayerOne > matchesPlayerTWo) {
+                    System.out.println("Победил игрок 1");
+                } else {
+                    System.out.println("Победил игрок 2");
+                }
+                break;
+            }
             System.out.println("Введите число от 1 до 3: ");
             int answer = Integer.valueOf(input.nextLine());
             if (answer < 0 || answer > 3) {
-                System.out.println(answer + " это не число от 1 до 3!\nНачните снова: ");
+                System.out.println("Вы ввели неверное число, придется начать сначала :(");
                 break;
             }
+            if (answerCount % 2 == 0) {
+                matchesPlayerOne++;
+                answerCount++;
+                matchesTotal -= answer;
+                System.out.println("После ответа первого игрока на столе осталось " + matchesTotal + " спичек");
+                if(matchesTotal == 0){
+                    System.out.println("Выиграл первый игрок");
+                    break;
+                }
+            } else {
+                matchesPlayerTWo++;
+                answerCount++;
+                matchesTotal -= answer;
+                System.out.println("После ответа второго игрока на столе осталось " + matchesTotal + " спичек");
+                if(matchesTotal == 0){
+                    System.out.println("Выиграл второй игрок");
+                    break;
+                }
+            }
+
         }
     }
 }
