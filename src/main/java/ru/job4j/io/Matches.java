@@ -4,47 +4,36 @@ import java.util.Scanner;
 
 public class Matches {
     public static void main(String[] args) {
+        int answerCount = 0;
         Scanner input = new Scanner(System.in);
         int matchesTotal = 11;
-        int answerCount = 0;
-        int matchesPlayerOne = 0;
-        int matchesPlayerTWo = 0;
-
+        boolean playerOne = false;
+        System.out.println("Игра спички");
         while (matchesTotal > 0) {
-            if (matchesTotal <= 0) {
-                if (matchesPlayerOne > matchesPlayerTWo) {
-                    System.out.println("Победил игрок 1");
-                } else {
-                    System.out.println("Победил игрок 2");
-                }
-                break;
+            if (answerCount % 2 == 0) {
+                answerCount++;
+                System.out.println("Ход первого игрока");
+            } else {
+                answerCount++;
+                System.out.println("Ход второго игрока");
             }
             System.out.println("Введите число от 1 до 3: ");
             int answer = Integer.valueOf(input.nextLine());
             if (answer < 0 || answer > 3) {
-                System.out.println("Вы ввели неверное число, придется начать сначала :(");
+                System.out.println("Вы ввели неверное число, придется начать сначала");
                 break;
             }
-            if (answerCount % 2 == 0) {
-                matchesPlayerOne++;
-                answerCount++;
-                matchesTotal -= answer;
-                System.out.println("После ответа первого игрока на столе осталось " + matchesTotal + " спичек");
-                if(matchesTotal == 0){
-                    System.out.println("Выиграл первый игрок");
-                    break;
-                }
-            } else {
-                matchesPlayerTWo++;
-                answerCount++;
-                matchesTotal -= answer;
-                System.out.println("После ответа второго игрока на столе осталось " + matchesTotal + " спичек");
-                if(matchesTotal == 0){
-                    System.out.println("Выиграл второй игрок");
-                    break;
-                }
+            matchesTotal -= answer;
+            if (matchesTotal <= 0) {
+                matchesTotal = 0;
             }
-
+            System.out.println("После вашего ответа на столе осталось " + matchesTotal + " спичек");
+            playerOne = !playerOne;
+        }
+        if (playerOne) {
+            System.out.println("Выиграл первый игрок");
+        } else {
+            System.out.println("Выиграл второй игрок");
         }
     }
 }
