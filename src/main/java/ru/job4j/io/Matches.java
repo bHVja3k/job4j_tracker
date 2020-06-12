@@ -4,17 +4,15 @@ import java.util.Scanner;
 
 public class Matches {
     public static void main(String[] args) {
-        int answerCount = 0;
         Scanner input = new Scanner(System.in);
         int matchesTotal = 11;
         boolean playerOne = false;
         System.out.println("Игра спички");
         while (matchesTotal > 0) {
-            if (answerCount % 2 == 0) {
-                answerCount++;
+            if (playerOne) {
                 System.out.println("Ход первого игрока");
             } else {
-                answerCount++;
+
                 System.out.println("Ход второго игрока");
             }
             System.out.println("Введите число от 1 до 3: ");
