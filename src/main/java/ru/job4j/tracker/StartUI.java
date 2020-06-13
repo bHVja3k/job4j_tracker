@@ -53,9 +53,9 @@ public class StartUI {
             } else if (select == 5) {
                 System.out.println(System.lineSeparator() + "=== Find items by name ===");
                 String byname = input.askStr("Enter name: ");
-                Item[] item = tracker.findByName(byname);
-                if (item != null) {
-                    for (Item value : item) {
+                Item[] items = tracker.findByName(byname);
+                if (items.length > 0) {
+                    for (Item value : items) {
                         System.out.println(" ID заявки: " + value.getId() + System.lineSeparator() + " Имя заявки: " + value.getName());
                     }
                 } else {
