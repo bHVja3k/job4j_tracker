@@ -35,7 +35,7 @@ public class StartUI {
         System.out.println(System.lineSeparator() + "=== Delete item ===");
         String delete = input.askStr("Enter id: ");
         if (tracker.delete(delete)) {
-            System.out.println("Заявка успешно заменена");
+            System.out.println("Item deleted");
         } else {
             System.out.println("Id указан неверно");
         }
