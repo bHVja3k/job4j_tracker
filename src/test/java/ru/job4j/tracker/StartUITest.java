@@ -56,6 +56,7 @@ public class StartUITest {
                 new ExitActions(out)
         };
         new StartUI(out).init(in, tracker, actions);
+        assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
 
     @Test
@@ -89,7 +90,7 @@ public class StartUITest {
                 new ExitActions(out)
         };
         new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findById(item.getId()), is(item.getId()));
+        assertThat(tracker.findById(item.getId()), is("New Item"));
     }
 
     @Test
@@ -97,7 +98,6 @@ public class StartUITest {
         Output out = new ConsoleOutput();
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("New item"));
-        Item item1 = tracker.add(new Item("New item1"));
         Input in = new StubInput(
                 new String[]{"0", "1"}
         );
@@ -106,14 +106,14 @@ public class StartUITest {
                 new ExitActions(out)
         };
         new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findAll(), is("New item"));
+        assertThat(tracker.findAll()[0], is("New item"));
     }
 
     @Test
     public void whenExit() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                new String[] {"0"}
+                new String[]{"0"}
         );
         Tracker tracker = new Tracker();
         UserAction[] actions = {
