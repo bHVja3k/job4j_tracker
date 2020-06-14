@@ -85,7 +85,6 @@ public class Tracker {
     public boolean replace(String id, Item item) {
         int index = indexOf(id);
         boolean rsl = index != -1;
-        // здесь мы сохраняем старый id заявки
         if (rsl) {
             item.setId(id);
             items[index] = item;
