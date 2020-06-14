@@ -3,6 +3,8 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
+import java.util.StringJoiner;
+
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
@@ -54,7 +56,57 @@ public class StartUITest {
                 new ExitActions(out)
         };
         new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findById(item.getId()), is(nullValue()));
+    }
+
+    @Test
+    public void findByNameFound() {
+        Tracker tracker = new Tracker();
+        Output out = new StubOutput();
+        Item item = tracker.add(new Item("sometext"));
+        String foundName = "sometext";
+        Input in = new StubInput(
+                new String[]{"0", foundName, "1"}
+        );
+        UserAction[] actions = {
+                new FindByName(out),
+                new ExitActions(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(tracker.findByName(item.getName()), is(foundName));
+    }
+
+
+    @Test
+    public void FindByIdAction() {
+        Output out = new ConsoleOutput();
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("New Item"));
+        Input in = new StubInput(
+                new String[]{"0", item.getId(), "1"}
+        );
+        UserAction[] actions = {
+                new FindById(out),
+                new ExitActions(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(tracker.findById(item.getId()), is(item.getId()));
+    }
+
+    @Test
+    public void FindAllAction() {
+        Output out = new ConsoleOutput();
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("New item"));
+        Item item1 = tracker.add(new Item("New item1"));
+        Input in = new StubInput(
+                new String[]{"0", "1"}
+        );
+        UserAction[] actions = {
+                new ShowAll(out),
+                new ExitActions(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(tracker.findAll(), is("New item"));
     }
 
     @Test
