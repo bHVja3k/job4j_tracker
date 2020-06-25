@@ -28,7 +28,6 @@ public class UserStore {
     public static void main(String[] args) {
         try {
             User[] users = {new User("Petr Arsentev", true)};
-
             User user = findUser(users, "Petr Arsentev");
             if (validate(user)) {
                 System.out.println("This user has an access");
