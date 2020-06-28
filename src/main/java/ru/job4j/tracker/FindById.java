@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.List;
+
 public class FindById implements UserAction {
     private final Output out;
 
@@ -14,12 +16,9 @@ public class FindById implements UserAction {
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        String id = input.askStr("Enter id: ");
-        Item item = tracker.findById(id);
-        if (tracker.findById(id) != null) {
-            System.out.println(" ID item: " + item.getId() + System.lineSeparator() + "Name item: " + item.getName());
-        } else {
-            System.out.println("Id invalid");
+        List<Item> item = tracker.findById(input.askStr("Enter id: "));
+        for (int i = 0; i < item.size(); i++) {
+            System.out.println(" ID item: " + item.get(i).getId() + System.lineSeparator() + "Name item: " + item.get(i).getName());
         }
         return true;
     }
