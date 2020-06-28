@@ -29,8 +29,6 @@ public class BankService {
         return null;
     }
 
-    // Этот метод ищет счет пользователя по реквизитам. Сначала нужно найти пользователя.
-    // Потом получить список счетов этого пользователя и в нем найти нужный счет.
     public Account findByRequisite(String passport, String requisite) {
         User user = findByPassport(passport);
         List<Account> account = users.get(user);
@@ -44,8 +42,6 @@ public class BankService {
         return null;
     }
 
-    // Метод для перечисления денег с одного счёта на другой счёт.
-    //Если счёт не найден или не хватает денег на счёте srcAccount (с которого переводят), то метод должен вернуть false.
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String destRequisite, double amount) {
         boolean rsl = false;
         Account srcAccount = findByRequisite(srcPassport, srcRequisite);
