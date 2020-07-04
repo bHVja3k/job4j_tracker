@@ -29,7 +29,7 @@ public class JobTest {
 
     @Test
     public void whenComparatorByHighPriority() {
-        Comparator<Job> cmpHighPriority = new JobHighDescByPriority();
+        Comparator<Job> cmpHighPriority = new JobAscByPriority();
         int rsl = cmpHighPriority.compare(
                 new Job("Impl task", 0),
                 new Job("Fix bug", 1)
@@ -39,7 +39,7 @@ public class JobTest {
 
     @Test
     public void whenComparatorByHighName() {
-        Comparator<Job> cmpHighName = new JobHighDescByName();
+        Comparator<Job> cmpHighName = new JobAscByName();
         int rsl = cmpHighName.compare(
                 new Job("Iml tak", 0),
                 new Job("Fix bug", 1)
@@ -59,7 +59,7 @@ public class JobTest {
 
     @Test
     public void whenCompatorByHigtNameAndHighProrityDesc() {
-        Comparator<Job> cmpNamePriority = new JobHighDescByName().thenComparing(new JobHighDescByPriority());
+        Comparator<Job> cmpNamePriority = new JobAscByName().thenComparing(new JobAscByPriority());
         int rsl = cmpNamePriority.compare(
                 new Job("Impl task", 0),
                 new Job("Fix bug", 1)
@@ -70,7 +70,7 @@ public class JobTest {
 
     @Test
     public void whenCompatorByNameAndProrityIsEqualTo() {
-        Comparator<Job> cmpNamePriority = new JobHighDescByName().thenComparing(new JobHighDescByPriority());
+        Comparator<Job> cmpNamePriority = new JobAscByName().thenComparing(new JobAscByPriority());
         int rsl = cmpNamePriority.compare(
                 new Job("B", 2),
                 new Job("B", 2)
