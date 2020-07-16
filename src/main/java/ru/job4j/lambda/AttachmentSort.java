@@ -1,32 +1,27 @@
 package ru.job4j.lambda;
 
-import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Arrays;
 import java.util.List;
 
 public class AttachmentSort {
     public static void main(String[] args) {
         List<Attachment> attachments = Arrays.asList(
-                new Attachment("image 1", 100),
-                new Attachment("image 2", 34),
-                new Attachment("image 3", 13)
+                new Attachment("1. Task", 1),
+                new Attachment("2. Task", 2),
+                new Attachment("11. Task", 11)
         );
-        Comparator comparator =  new Comparator() {
-            @Override
-            public int compare(Object o1, Object o2) {
-                Attachment left = (Attachment) o1;
-                Attachment right = (Attachment) o2;
-                return left.getSize() - right.getSize();
-            }
+        Comparator<Attachment> sizeDesc = (left, right) -> {
+            System.out.println("compare sizes: " + right.getSize() + " - " + left.getSize());
+            return right.getSize() - left.getSize();
         };
-        attachments.sort(comparator);
+        attachments.sort(sizeDesc);
         System.out.println(attachments);
-        // создание компаратора на основе анонимного класса
-        Comparator<Attachment> comparatorSize =  new Comparator<Attachment>() {
-            @Override
-            public int compare(Attachment left, Attachment right) {
-                return left.getSize() - right.getSize();
-            }
+        Comparator<Attachment> nameDesc = (left, right) -> {
+            System.out.println("compare names: " + right.getName() + " - " + left.getName());
+            return right.getName().compareTo(left.getName());
         };
+        attachments.sort(nameDesc);
+        System.out.println(attachments);
     }
 }
