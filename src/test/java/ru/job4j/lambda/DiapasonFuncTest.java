@@ -20,7 +20,7 @@ public class DiapasonFuncTest {
     @Test
     public void whenQuadraticFunctionThenQuadraticResult() {
         DiapasonFunc function = new DiapasonFunc();
-        List<Double> result = function.diapason(5, 8, x -> 2 * x*x + 3 * x + 4);
+        List<Double> result = function.diapason(5, 8, x -> 2 * x * x + 3 * x + 4);
         List<Double> expected = Arrays.asList(69D, 94D, 123D);
         assertThat(result, is(expected));
     }
