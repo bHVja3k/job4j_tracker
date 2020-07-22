@@ -11,7 +11,6 @@ public class Student {
     public int getScore() {
         return score;
     }
-
     public Student(String surname, int score) {
         this.score = score;
         this.surname = surname;
