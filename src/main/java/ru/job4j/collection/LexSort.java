@@ -6,11 +6,10 @@ public class LexSort implements Comparator<String> {
 
     @Override
     public int compare(String left, String right) {
-        if (left.length() > right.length()) {
-            return 1;
-        } else if (left.length() < right.length()) {
-            return -1;
-        }
-        return left.compareTo(right);
+        String[] split1 = left.split(". ");
+        String[] split2 = right.split(". ");
+        int leftResult = Integer.parseInt(split1[0]);
+        int rightResult = Integer.parseInt(split2[0]);
+        return Integer.compare(leftResult, rightResult);
     }
 }
