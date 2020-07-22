@@ -3,6 +3,7 @@ package ru.job4j.stream;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.core.Is.is;
@@ -20,7 +21,7 @@ public class SchoolTest {
                 new Student("a",50),
                 new Student("a",40)
         );
-        List<Student> result = School.collect(students, student -> student.getScore() >= 70);
+        List<Student> result = School.collect(students, student -> student.getScore() >= 70 && student.getScore() <= 100);
         List<Student> expected = students.stream().filter(
                 student -> student.getScore() >= 70 && student.getScore() <= 100
         ).collect(Collectors.toList());
@@ -38,9 +39,9 @@ public class SchoolTest {
                 new Student("a",50),
                 new Student("a",40)
         );
-        List<Student> result = School.collect(students, student -> student.getScore() >= 50 && student.getScore() <= 70);
+        List<Student> result = School.collect(students, student -> student.getScore() >= 50 && student.getScore() < 70);
         List<Student> expected = students.stream().filter(
-                student -> student.getScore() >= 50 && student.getScore() <= 70
+                student -> student.getScore() >= 50 && student.getScore() < 70
         ).collect(Collectors.toList());
         assertThat(result, is(expected));
     }
@@ -56,9 +57,9 @@ public class SchoolTest {
                 new Student("a",50),
                 new Student("a",40)
         );
-        List<Student> result = School.collect(students, student -> student.getScore() <= 50);
+        List<Student> result = School.collect(students, student -> student.getScore() < 50);
         List<Student> expected = students.stream().filter(
-                student -> student.getScore() >= 0 && student.getScore() <= 50
+                student -> student.getScore() >= 0 && student.getScore() < 50
         ).collect(Collectors.toList());
         assertThat(result, is(expected));
     }
