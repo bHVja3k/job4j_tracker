@@ -11,6 +11,10 @@ public class Student {
     public int getScore() {
         return score;
     }
+    public String getSurname() {
+        return surname;
+    }
+
     public Student(String surname, int score) {
         this.score = score;
         this.surname = surname;
@@ -29,5 +33,6 @@ public class Student {
     public int hashCode() {
         return Objects.hash(score, surname);
     }
+
 
 }
