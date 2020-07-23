@@ -1,11 +1,10 @@
 package ru.job4j.tracker;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Tracker {
-    ArrayList<Item> items = new ArrayList<Item>();
+    private final List<Item> items = new ArrayList<>();
     private int ids = 1;
     private int size = 0;
 
@@ -17,6 +16,7 @@ public class Tracker {
      */
 
     public List<Item> add(Item item) {
+        item.setId(this.generateId());
         items.add(item);
         return items;
     }
@@ -25,11 +25,21 @@ public class Tracker {
         return String.valueOf(ids++);
     }
 
+    private int indexOf(String id) {
+        int rsl = -1;
+        for (int index = 0; index < items.size(); index++) {
+            if (items.get(index).getId().equals(id)) {
+                rsl = index;
+                break;
+            }
+        }
+        return rsl;
+    }
 
     public List<Item> findById(String id) {
         ArrayList<Item> ids = new ArrayList<Item>();
         for (Item cell : items) {
-            if (id == cell.getId()) {
+            if (id.equals(cell.getId())) {
                 ids.add(cell);
             }
         }
@@ -46,7 +56,7 @@ public class Tracker {
     public List<Item> findByName(String name) {
         ArrayList<Item> ids = new ArrayList<Item>();
         for (Item cell : items) {
-            if (name == cell.getName()) {
+            if (name.equals(cell.getName())) {
                 ids.add(cell);
             }
         }
@@ -71,9 +81,16 @@ public class Tracker {
      * @param item новая заявка
      */
     public boolean replace(String id, Item item) {
-        items.set(items.indexOf(id), item);
-        return true;
+        boolean result = false;
+        int index = indexOf(id);
+        if (index != -1){
+            item.setId(id);
+            items.set(index, item);
+            result = true;
+        }
+        return result;
     }
+
 
     /**
      * Метод удаления заявки из хранилища
@@ -82,7 +99,12 @@ public class Tracker {
      */
 
     public boolean delete(String id) {
-        items.remove(items.indexOf(id));
-        return true;
+        boolean result = false;
+        int index = indexOf(id);
+        if (index != -1) {
+            items.remove(items.get(index));
+            result = true;
+        }
+        return result;
     }
 }
