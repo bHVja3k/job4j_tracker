@@ -2,7 +2,9 @@ package ru.job4j.stream;
 
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -61,6 +63,19 @@ public class SchoolTest {
         List<Student> expected = students.stream().filter(
                 student -> student.getScore() >= 0 && student.getScore() < 50
         ).collect(Collectors.toList());
+        assertThat(result, is(expected));
+    }
+
+    @Test
+    public void whenListToMap() {
+        List<Student> class10 = List.of(
+                new Student("a",100),
+                new Student("a",100)
+        );
+        School studentMap = new School();
+        Map<String, Student> result = studentMap.listToMap(class10);
+        Map<String, Student> expected = new HashMap<>();
+        expected.put("a", new Student("a",100));
         assertThat(result, is(expected));
     }
 }

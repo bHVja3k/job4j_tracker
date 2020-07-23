@@ -20,19 +20,26 @@ public class Student {
         this.surname = surname;
     }
 
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "score=" + score +
+                ", surname='" + surname + '\'' +
+                '}';
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Student)) return false;
         Student student = (Student) o;
-        return score == student.score &&
-                surname.equals(student.surname);
+        return getScore() == student.getScore() &&
+                Objects.equals(getSurname(), student.getSurname());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(score, surname);
+        return Objects.hash(getScore(), getSurname());
     }
-
-
 }
